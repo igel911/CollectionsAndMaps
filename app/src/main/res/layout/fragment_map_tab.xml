@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListTabFragment">
+
+    <Button
+        android:id="@+id/btnCalculateMapTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_tabs"
+        android:layout_marginTop="@dimen/margin_tabs"
+        android:text="@string/btnCalculateText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etQuantityMapTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_tabs"
+        android:layout_marginTop="@dimen/margin_tabs"
+        android:hint="@string/etQuantityHint"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTreeMap"
+        style="@style/TextViewResult"
+        android:layout_marginTop="@dimen/margin_tabs"
+        android:text="@string/tvTreeMapTextMapTab"
+        app:layout_constraintEnd_toStartOf="@id/tvHashMap"
+        app:layout_constraintStart_toStartOf="@id/guidelineMapTab"
+        app:layout_constraintTop_toBottomOf="@id/etQuantityMapTab" />
+
+    <TextView
+        android:id="@+id/tvHashMap"
+        style="@style/TextViewResult"
+        android:text="@string/tvHashMapTextMapTab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTreeMap"
+        app:layout_constraintTop_toTopOf="@id/tvTreeMap" />
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_tabs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tvHashMap"
+        app:layout_constraintStart_toStartOf="@id/etQuantityMapTab"
+        app:layout_constraintTop_toBottomOf="@id/tvHashMap">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvAddNew"
+                style="@style/TextViewResult"
+                android:text="@string/tvAddingNewTextMapTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSearchByKey"
+                style="@style/TextViewResult"
+                android:text="@string/tvSearchByKeyTextMapTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddNew" />
+
+            <TextView
+                android:id="@+id/tvRemoving"
+                style="@style/TextViewResult"
+                android:text="@string/tvRemovingTextMapTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSearchByKey" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewMapTab"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tvRemoving"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvSearchByKey"
+                app:layout_constraintTop_toTopOf="@id/tvAddNew">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineMapTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="106dp" />
+
+</android.support.constraint.ConstraintLayout>

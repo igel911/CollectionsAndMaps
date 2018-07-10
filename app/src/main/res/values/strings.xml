@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">CollectionsAndMaps</string>
+    <string name="list_tab_fragment">List Tab Fragment</string>
+    <string name="map_tab_fragment">Map Tab Fragment</string>
+    <string name="btnCalculateText">Calculate</string>
+    <string name="etQuantityHint">enter quantity of elements</string>
+    <string name="tvArrayListTextListTab">ArrayList</string>
+    <string name="tvLinkedListTextListTab">LinkedList</string>
+    <string name="tvCowArrayListTextListTab">CopyOnWriteArrayList</string>
+    <string name="tvAddBeginTextListTab">Adding in the beginning</string>
+    <string name="tvAddMiddleTextListTab">Adding in the middle</string>
+    <string name="tvAddEndTextListTab">Adding in the end</string>
+    <string name="tvSearchTextListTab">Search by value</string>
+    <string name="tvRemoveBeginTextListTab">Removing in the beginning</string>
+    <string name="tvRemoveMiddleTextListTab">Removing in the middle</string>
+    <string name="tvRemoveEndTextListTab">Removing in the end</string>
+    <string name="tvTreeMapTextMapTab">TreeMap</string>
+    <string name="tvHashMapTextMapTab">HashMap</string>
+    <string name="tvAddingNewTextMapTab">Adding new</string>
+    <string name="tvSearchByKeyTextMapTab">Search by key</string>
+    <string name="tvRemovingTextMapTab">Removing</string>
+    <string name="tab_collections">Collections</string>
+    <string name="tab_maps">Maps</string>
+</resources>

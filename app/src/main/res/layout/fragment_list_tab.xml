@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListTabFragment">
+
+    <Button
+        android:id="@+id/btnCalculateListTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_tabs"
+        android:layout_marginTop="@dimen/margin_tabs"
+        android:text="@string/btnCalculateText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etQuantityListTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_tabs"
+        android:layout_marginTop="@dimen/margin_tabs"
+        android:hint="@string/etQuantityHint"
+        android:inputType="numberDecimal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvArrayList"
+        style="@style/TextViewResult"
+        android:text="@string/tvArrayListTextListTab"
+        app:layout_constraintBottom_toBottomOf="@id/tvLinkedList"
+        app:layout_constraintStart_toStartOf="@id/guidelineListTab"
+        app:layout_constraintTop_toTopOf="@id/tvLinkedList" />
+
+    <TextView
+        android:id="@+id/tvLinkedList"
+        style="@style/TextViewResult"
+        android:layout_marginTop="@dimen/margin_tabs"
+        android:text="@string/tvLinkedListTextListTab"
+        app:layout_constraintEnd_toStartOf="@id/tvCOWList"
+        app:layout_constraintStart_toEndOf="@id/tvArrayList"
+        app:layout_constraintTop_toBottomOf="@id/etQuantityListTab" />
+
+    <TextView
+        android:id="@+id/tvCOWList"
+        style="@style/TextViewResult"
+        android:text="@string/tvCowArrayListTextListTab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvLinkedList"
+        app:layout_constraintTop_toTopOf="@id/tvLinkedList" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_tabs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tvCOWList"
+        app:layout_constraintStart_toStartOf="@id/etQuantityListTab"
+        app:layout_constraintTop_toBottomOf="@id/tvCOWList">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvAddBegin"
+                style="@style/TextViewResult"
+                android:text="@string/tvAddBeginTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAddMiddle"
+                style="@style/TextViewResult"
+                android:text="@string/tvAddMiddleTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddBegin" />
+
+            <TextView
+                android:id="@+id/tvAddEnd"
+                style="@style/TextViewResult"
+                android:text="@string/tvAddEndTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddMiddle" />
+
+
+            <TextView
+                android:id="@+id/tvSearchValue"
+                style="@style/TextViewResult"
+                android:text="@string/tvSearchTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddEnd" />
+
+            <TextView
+                android:id="@+id/tvRemoveBegin"
+                style="@style/TextViewResult"
+                android:text="@string/tvRemoveBeginTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSearchValue" />
+
+            <TextView
+                android:id="@+id/tvRemoveMiddle"
+                style="@style/TextViewResult"
+                android:text="@string/tvRemoveMiddleTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRemoveBegin" />
+
+            <TextView
+                android:id="@+id/tvRemoveEnd"
+                style="@style/TextViewResult"
+                android:text="@string/tvRemoveEndTextListTab"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRemoveMiddle" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewListTab"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tvRemoveEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvAddBegin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineListTab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="101dp" />
+
+
+</android.support.constraint.ConstraintLayout>
