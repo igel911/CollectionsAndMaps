@@ -3,7 +3,6 @@ package ua.com.foxminded.collectionsandmaps.tasks;
 import ua.com.foxminded.collectionsandmaps.TasksContract;
 import ua.com.foxminded.collectionsandmaps.dto.BaseTaskParams;
 import ua.com.foxminded.collectionsandmaps.dto.CalculationResult;
-import ua.com.foxminded.collectionsandmaps.enums.Tabs;
 
 public abstract class BaseTask implements Runnable {
 
@@ -22,8 +21,4 @@ public abstract class BaseTask implements Runnable {
         return mBaseTaskParams.getCResult();
     }
 
-    @Tabs
-    public String getTabType() {
-        return mBaseTaskParams.getTabType();
-    }
 }

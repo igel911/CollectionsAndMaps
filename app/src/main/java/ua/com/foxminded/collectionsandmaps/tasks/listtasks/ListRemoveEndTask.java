@@ -23,6 +23,6 @@ public class ListRemoveEndTask extends ListBaseTask {
         long endTime = System.nanoTime();
         CalculationResult cResult = getCResult();
         cResult.setResult(String.valueOf((endTime - startTime) / DIVIDER));
-        getCallback().onCalculationOver(cResult, getTabType());
+        getCallback().onCalculationOver(cResult);
     }
 }

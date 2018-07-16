@@ -4,12 +4,10 @@ import java.util.List;
 
 import butterknife.Unbinder;
 import ua.com.foxminded.collectionsandmaps.dto.CalculationResult;
-import ua.com.foxminded.collectionsandmaps.enums.Tabs;
 
 interface TabContract {
 
     interface View {
-        void setPresenter(Presenter presenter);
 
         void showCalculationResult(CalculationResult cResult);
     }
@@ -17,12 +15,14 @@ interface TabContract {
     interface Presenter {
         void setUnbinder(Unbinder unbinder);
 
-        void runCalculation(@Tabs String tabType, int quantity);
+        void runCalculation(int quantity);
 
-        void stop(@Tabs String tabType);
+        void stop();
 
-        List<CalculationResult> getCalculationCash(@Tabs String tabType);
+        List<CalculationResult> getCalculationCash();
 
         void unbind();
+
+        void setView(View view);
     }
 }

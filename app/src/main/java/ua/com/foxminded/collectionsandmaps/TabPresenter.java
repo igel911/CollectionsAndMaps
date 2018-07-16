@@ -4,7 +4,6 @@ import java.util.List;
 
 import butterknife.Unbinder;
 import ua.com.foxminded.collectionsandmaps.dto.CalculationResult;
-import ua.com.foxminded.collectionsandmaps.enums.Tabs;
 
 public class TabPresenter implements TabContract.Presenter, TasksContract.GetCalculationCallback {
 
@@ -12,20 +11,18 @@ public class TabPresenter implements TabContract.Presenter, TasksContract.GetCal
     private TasksContract.TasksDataSource mTasksDataSource;
     private Unbinder mUnbinder;
 
-    TabPresenter(TabContract.View view, TasksContract.TasksDataSource tasksDataSource) {
+    TabPresenter(TasksContract.TasksDataSource tasksDataSource) {
         mTasksDataSource = tasksDataSource;
-        mView = view;
-        mView.setPresenter(this);
     }
 
     @Override
-    public void onCalculationOver(CalculationResult cResult, @Tabs String tabType) {
-        mTasksDataSource.addToCalculationCash(cResult, tabType);
-        onCalculationStart(cResult, tabType);
+    public void onCalculationOver(CalculationResult cResult) {
+        mTasksDataSource.addToCalculationCash(cResult);
+        onCalculationStart(cResult);
     }
 
     @Override
-    public void onCalculationStart(CalculationResult cResult, @Tabs String tabType) {
+    public void onCalculationStart(CalculationResult cResult) {
         mView.showCalculationResult(cResult);
     }
 
@@ -34,25 +31,31 @@ public class TabPresenter implements TabContract.Presenter, TasksContract.GetCal
         mUnbinder = unbinder;
     }
 
-    public void runCalculation(@Tabs String tabType, int quantity) {
-        mTasksDataSource.runCalculation(tabType, quantity, this);
+    @Override
+    public void runCalculation(int quantity) {
+        mTasksDataSource.runCalculation(quantity, this);
     }
 
     @Override
-    public void stop(@Tabs String tabType) {
+    public void stop() {
         mTasksDataSource.stopAllTasks();
-        for (CalculationResult cResult : mTasksDataSource.getCalculationCash(tabType)) {
-            onCalculationStart(cResult, tabType);
+        for (CalculationResult cResult : mTasksDataSource.getCalculationCash()) {
+            onCalculationStart(cResult);
         }
     }
 
     @Override
-    public List<CalculationResult> getCalculationCash(@Tabs String tabType) {
-        return mTasksDataSource.getCalculationCash(tabType);
+    public List<CalculationResult> getCalculationCash() {
+        return mTasksDataSource.getCalculationCash();
     }
 
     @Override
     public void unbind() {
         mUnbinder.unbind();
+    }
+
+    @Override
+    public void setView(TabContract.View view) {
+        mView = view;
     }
 }

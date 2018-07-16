@@ -1,6 +1,7 @@
 package ua.com.foxminded.collectionsandmaps;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,25 +14,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ua.com.foxminded.collectionsandmaps.adapters.RecyclerAdapter;
 import ua.com.foxminded.collectionsandmaps.dto.CalculationResult;
 import ua.com.foxminded.collectionsandmaps.enums.Maps;
-import ua.com.foxminded.collectionsandmaps.enums.Tabs;
 
 public class MapTabFragment extends Fragment implements TabContract.View {
 
-    private TabContract.Presenter mPresenter;
+    @Named("Map") @Inject TabContract.Presenter mPresenter;
     private RecyclerAdapter mAdapter;
 
-    @BindView(R.id.recyclerViewMapTab) RecyclerView mRecyclerView;
-    @BindView(R.id.etQuantityMapTab) EditText etQuantity;
+    @BindView(R.id.recyclerViewMapTab)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.etQuantityMapTab)
+    EditText etQuantity;
+
 
     @Override
-    public void setPresenter(TabContract.Presenter presenter) {
-        mPresenter = presenter;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        DaggerActivityComponent.create().injectMapTabFragment(this);
     }
 
     @Override
@@ -47,7 +54,7 @@ public class MapTabFragment extends Fragment implements TabContract.View {
         super.onActivityCreated(savedInstanceState);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), Maps.size));
-        mAdapter = new RecyclerAdapter(mPresenter.getCalculationCash(Tabs.MAP_TAB));
+        mAdapter = new RecyclerAdapter(mPresenter.getCalculationCash());
         mRecyclerView.setAdapter(mAdapter);
 
         setRetainInstance(true);
@@ -58,7 +65,7 @@ public class MapTabFragment extends Fragment implements TabContract.View {
         String etQuantityText = etQuantity.getText().toString();
         if (!etQuantityText.isEmpty()) {
             final int quantity = Integer.parseInt(etQuantityText);
-            mPresenter.runCalculation(Tabs.MAP_TAB, quantity);
+            mPresenter.runCalculation(quantity);
         }
     }
 
@@ -66,19 +73,19 @@ public class MapTabFragment extends Fragment implements TabContract.View {
     public void showCalculationResult(final CalculationResult cResult) {
         FragmentActivity activity = getActivity();
         if (activity != null) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mAdapter.updateItem(cResult);
-                }
-            });
+            activity.runOnUiThread(() -> mAdapter.updateItem(cResult));
         }
+    }
+
+    @Inject
+    void setView() {
+        mPresenter.setView(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mPresenter.stop(Tabs.MAP_TAB);
+        mPresenter.stop();
     }
 
     @Override

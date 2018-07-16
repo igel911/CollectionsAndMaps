@@ -8,7 +8,7 @@ import ua.com.foxminded.collectionsandmaps.tasks.BaseTask;
 
 public class ThreadPoolManager {
 
-    private final ThreadPoolExecutor mExecutor;
+    private ThreadPoolExecutor mExecutor;
     private LinkedBlockingQueue<Runnable> taskQueue;
     private static ThreadPoolManager sManager;
 
@@ -30,12 +30,14 @@ public class ThreadPoolManager {
     }
 
     public void runTask(BaseTask task){
-        task.getCallback().onCalculationStart(task.getCResult(), task.getTabType());
+        task.getCallback().onCalculationStart(task.getCResult());
         mExecutor.execute(task);
     }
 
     public void stopAllTasks() {
         taskQueue.clear();
         mExecutor.shutdownNow();
+        mExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, CORE_POOL_SIZE * 2,
+                KEEP_ALIVE_TIME, TimeUnit.MILLISECONDS, taskQueue);
     }
 }

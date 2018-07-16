@@ -3,7 +3,6 @@ package ua.com.foxminded.collectionsandmaps.dto;
 import java.util.Map;
 
 import ua.com.foxminded.collectionsandmaps.TasksContract;
-import ua.com.foxminded.collectionsandmaps.enums.Tabs;
 
 public class MapTaskParams extends BaseTaskParams {
 
@@ -11,12 +10,11 @@ public class MapTaskParams extends BaseTaskParams {
     private Map<Integer, Integer> mIntegerMap;
     private MapResult mMapResult;
 
-    public MapTaskParams(@Tabs String tabType,
-                         int size,
+    public MapTaskParams(int size,
                          Map<Integer, Integer> integerMap,
                          MapResult mapResult,
                          TasksContract.GetCalculationCallback callback) {
-        super(tabType, mapResult, callback);
+        super(mapResult, callback);
         mSize = size;
         mIntegerMap = integerMap;
         mMapResult = mapResult;
